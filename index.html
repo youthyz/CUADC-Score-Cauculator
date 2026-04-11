@@ -2737,7 +2737,7 @@
         <h2 id="hubLowerTitle" class="hub-lower__title">成绩库与对照</h2>
         <ol class="hub-lower__steps" aria-label="本区分块说明">
           <li>
-            <strong>本机数据</strong>：打开<strong>总决赛成绩库</strong>检索 / 自填入库；下方列表为「参数输入」保存的<strong>已存试算</strong>（原称快照，与库条目来源不同）。
+            <strong>本机数据</strong>：成绩库与已存试算共用<strong>同一本地数据库</strong>存储。打开<strong>总决赛成绩库</strong>检索 / 自填入库；下方列表为「参数输入」保存的<strong>已存试算</strong>（与库行数据来源不同）。
           </li>
           <li>
             <strong>奖级参考图</strong>：柱图为当前试算与<strong>库内各奖级</strong>参考柱；自定分数线仅画在图上，与右侧对照表无直接联动。
@@ -2749,9 +2749,9 @@
       </div>
 
       <div class="card hub-card hub-card--ref-snaps">
-        <h2>已存结果与分数参考 <span class="tag">本机</span></h2>
+        <h2>本机数据库 <span class="tag">成绩库 · 已存试算</span></h2>
         <p class="formula-note" style="margin-top: 0">
-          <strong>总决赛成绩库</strong>（弹窗）：2025 团体名次与双机成绩，仅供检索与 Δ 参考，与本列表的「已存试算」不是同一数据源。<strong>已存试算</strong>仅在上方勾选保存后写入，可「载入」到输入区，或「对比」后在下方展开并排表。
+          成绩库与已存试算已<strong>合并为同一本地数据库</strong>（浏览器中一条存储记录）。<strong>总决赛成绩库</strong>（弹窗）为团体名次与双机成绩；<strong>已存试算</strong>为你在上方保存的参数方案。二者均可用于下方对照矩阵，但来源不同。
         </p>
         <div class="ref-snaps-actions">
           <p class="formula-note">
@@ -2961,7 +2961,11 @@
 
   <script>
     (function () {
-      const STORAGE_KEY = "model-aircraft-score-snapshots-v1";
+      /** 旧版独立存储键，首次启动时合并进 UNIFIED_DB_KEY 后移除 */
+      const STORAGE_KEY_LEGACY = "model-aircraft-score-snapshots-v1";
+      const REF_LIB_KEY_LEGACY = "model-aircraft-ref-scores-v1";
+      /** 本机统一数据库：总决赛成绩库行 + 用户保存的试算参数（单键 JSON） */
+      const UNIFIED_DB_KEY = "model-aircraft-local-db-v1";
 
       function chartPalette() {
         const st = getComputedStyle(document.documentElement);
@@ -4713,9 +4717,9 @@
         }
       }
 
-      function loadSnapshots() {
+      function loadTrialsFromLegacy() {
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
+          const raw = localStorage.getItem(STORAGE_KEY_LEGACY);
           if (!raw) return [];
           const arr = JSON.parse(raw);
           return Array.isArray(arr) ? arr : [];
@@ -4724,8 +4728,66 @@
         }
       }
 
+      function loadRefRowsFromLegacy() {
+        try {
+          const raw = localStorage.getItem(REF_LIB_KEY_LEGACY);
+          if (!raw) return null;
+          const o = JSON.parse(raw);
+          if (!o || !Array.isArray(o.rows) || o.rows.length === 0) return null;
+          return o.rows;
+        } catch {
+          return null;
+        }
+      }
+
+      function migrateLegacyToUnified() {
+        const trials = loadTrialsFromLegacy();
+        let refRows = loadRefRowsFromLegacy();
+        if (!refRows || refRows.length === 0) refRows = getDefaultRefRows();
+        const db = { v: 1, refRows: refRows, trials: trials };
+        try {
+          localStorage.setItem(UNIFIED_DB_KEY, JSON.stringify(db));
+          localStorage.removeItem(REF_LIB_KEY_LEGACY);
+          localStorage.removeItem(STORAGE_KEY_LEGACY);
+        } catch (e) {
+          /* ignore quota */
+        }
+        return db;
+      }
+
+      function loadUnifiedDb() {
+        try {
+          const raw = localStorage.getItem(UNIFIED_DB_KEY);
+          if (raw) {
+            const o = JSON.parse(raw);
+            if (o && o.v === 1 && Array.isArray(o.refRows) && Array.isArray(o.trials)) return o;
+          }
+        } catch {
+          /* fall through */
+        }
+        return migrateLegacyToUnified();
+      }
+
+      function saveUnifiedDb(db) {
+        localStorage.setItem(
+          UNIFIED_DB_KEY,
+          JSON.stringify({ v: 1, refRows: db.refRows || [], trials: db.trials || [] })
+        );
+      }
+
+      function loadSnapshots() {
+        try {
+          const db = loadUnifiedDb();
+          return db.trials || [];
+        } catch {
+          return [];
+        }
+      }
+
       function saveSnapshots(list) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        const db = loadUnifiedDb();
+        db.trials = Array.isArray(list) ? list : [];
+        saveUnifiedDb(db);
       }
 
       let comparePick = [];
@@ -4999,7 +5061,7 @@
 
       document.getElementById("btnClearSnaps").addEventListener("click", () => {
         if (confirm("确定清空所有已存结果？")) {
-          localStorage.removeItem(STORAGE_KEY);
+          saveSnapshots([]);
           localStorage.removeItem(DIFF_IDX_KEY);
           localStorage.removeItem(COMP_BASE_KEY);
           comparePick = [];
@@ -5123,8 +5185,6 @@
         );
       }
 
-      const REF_LIB_KEY = "model-aircraft-ref-scores-v1";
-
       function getDefaultRefRows() {
         return [
           { rank: 1, school: "南昌航空大学科技学院", s1: 36.48, s2: 36.73, total: 73.2, award: "一等奖" },
@@ -5164,18 +5224,18 @@
 
       function loadRefRows() {
         try {
-          const raw = localStorage.getItem(REF_LIB_KEY);
-          if (!raw) return null;
-          const o = JSON.parse(raw);
-          if (!o || !Array.isArray(o.rows)) return null;
-          return o.rows;
+          const db = loadUnifiedDb();
+          if (!db.refRows || db.refRows.length === 0) return null;
+          return db.refRows;
         } catch {
           return null;
         }
       }
 
       function saveRefRows(rows) {
-        localStorage.setItem(REF_LIB_KEY, JSON.stringify({ v: 1, rows: rows }));
+        const db = loadUnifiedDb();
+        db.refRows = Array.isArray(rows) ? rows : [];
+        saveUnifiedDb(db);
       }
 
       function getRefRows() {

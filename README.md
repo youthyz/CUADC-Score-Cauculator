@@ -27,7 +27,7 @@
 
 - 纯静态：**单个 `index.html`**，无构建步骤。
 - 依赖 CDN：KaTeX（含 auto-render，部分公式使用 `\htmlClass` 需 `trust`）、Google Fonts（Inter / Noto Sans SC / JetBrains Mono）。
-- 数据仅存用户浏览器本地（`localStorage`），清除站点数据或换设备会丢失。
+- 数据仅存用户浏览器本地：成绩库与已存试算合并为**一条** `localStorage` 记录（键名 `model-aircraft-local-db-v1`，由旧版两键自动迁移）；清除站点数据或换设备会丢失。
 
 ### 本地使用
 
@@ -70,6 +70,7 @@ A single-page, static web app that estimates the **single-round** score \(S_{\ma
 
 - One file: `index.html` (no bundler).
 - CDN: KaTeX (+ auto-render), Google Fonts.
+- Browser storage: reference library rows and saved trials are stored together under `localStorage` key `model-aircraft-local-db-v1` (migrates from older split keys on first load).
 
 ### Local use
 

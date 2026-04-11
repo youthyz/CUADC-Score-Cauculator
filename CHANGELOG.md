@@ -12,6 +12,18 @@ This file tracks **feature and documentation changes** for this project.
 
 ---
 
+## 2026-04-12 — 本机数据库合并 · Unified local storage
+
+### 中文
+
+- **本地存储**：成绩库（总决赛等行）与「已存试算」合并为单一 `localStorage` 键 `model-aircraft-local-db-v1`；首次打开时自动从旧键迁移并删除 `model-aircraft-ref-scores-v1`、`model-aircraft-score-snapshots-v1`。页面标题与说明改为「本机数据库」。
+
+### English
+
+- **Storage**: Reference rows and saved trials share one JSON blob (`model-aircraft-local-db-v1`); legacy keys are migrated on first load and removed. Hub copy updated to “local database”.
+
+---
+
 ## 2026-04-11 — 文档与界面整理 · Docs & UI polish
 
 ### 中文
