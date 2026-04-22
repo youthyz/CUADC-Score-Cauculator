@@ -1,0 +1,109 @@
+22: /* 图表 SVG 与脚本读取；柱色分段（绿/黄/红）见 chartTierColors */
+24: --chart-tier-high: #b5ead7;
+25: --chart-tier-mid: #ffdac1;
+26: --chart-tier-low: #ffb7b2;
+27: --chart-bar-fill: #000000;
+28: --chart-ref-fill: #6b7280;
+29: --chart-value-text: #1c2024;
+30: --chart-axis-text: #60646c;
+31: --chart-surface: #ffffff;
+69: --chart-tier-high: #b5ead7;
+70: --chart-tier-mid: #ffdac1;
+71: --chart-tier-low: #ffb7b2;
+72: --chart-bar-fill: #e8eaef;
+73: --chart-ref-fill: #8b939e;
+74: --chart-value-text: #f0f2f5;
+75: --chart-axis-text: #9ca3b0;
+76: --chart-surface: #1c2128;
+548: .workspace-right .sens-cell .sens-chart-host {
+668: .sens-cell .sens-chart-host {
+680: .sens-cell .sens-chart-host {
+685: .sens-cell .sens-chart-host svg {
+929: /* 滑动条：与柱状图 / 单轮成绩奖级色（--chart-tier-*）同系；分档切换时有过渡 */
+933: color-mix(in srgb, var(--chart-tier-high) 58%, var(--pure-white)),
+934: color-mix(in srgb, var(--chart-tier-high) 72%, #2d6b52)
+939: background: color-mix(in srgb, var(--chart-tier-high) 32%, #1a5a42);
+946: color-mix(in srgb, var(--chart-tier-mid) 55%, var(--pure-white)),
+947: color-mix(in srgb, var(--chart-tier-mid) 68%, #a86b28)
+952: background: color-mix(in srgb, var(--chart-tier-mid) 38%, #8a5a18);
+959: color-mix(in srgb, var(--chart-tier-low) 55%, var(--pure-white)),
+960: color-mix(in srgb, var(--chart-tier-low) 70%, #a84d52)
+965: background: color-mix(in srgb, var(--chart-tier-low) 36%, #8f353c);
+972: color-mix(in srgb, var(--chart-tier-high) 58%, var(--pure-white)),
+973: color-mix(in srgb, var(--chart-tier-high) 72%, #2d6b52)
+978: background: color-mix(in srgb, var(--chart-tier-high) 32%, #1a5a42);
+985: color-mix(in srgb, var(--chart-tier-mid) 55%, var(--pure-white)),
+986: color-mix(in srgb, var(--chart-tier-mid) 68%, #a86b28)
+991: background: color-mix(in srgb, var(--chart-tier-mid) 38%, #8a5a18);
+998: color-mix(in srgb, var(--chart-tier-low) 55%, var(--pure-white)),
+999: color-mix(in srgb, var(--chart-tier-low) 70%, #a84d52)
+1004: background: color-mix(in srgb, var(--chart-tier-low) 36%, #8f353c);
+1011: color-mix(in srgb, var(--chart-tier-high) 32%, var(--pure-white)),
+1012: color-mix(in srgb, var(--chart-tier-high) 55%, #0d3d2e)
+1017: background: color-mix(in srgb, var(--chart-tier-high) 45%, #22c55e);
+1023: color-mix(in srgb, var(--chart-tier-mid) 30%, var(--pure-white)),
+1024: color-mix(in srgb, var(--chart-tier-mid) 48%, #6b4a12)
+1029: background: color-mix(in srgb, var(--chart-tier-mid) 42%, #d97706);
+1035: color-mix(in srgb, var(--chart-tier-low) 32%, var(--pure-white)),
+1036: color-mix(in srgb, var(--chart-tier-low) 52%, #6b2d32)
+1041: background: color-mix(in srgb, var(--chart-tier-low) 40%, #ef4444);
+1047: color-mix(in srgb, var(--chart-tier-high) 32%, var(--pure-white)),
+1048: color-mix(in srgb, var(--chart-tier-high) 55%, #0d3d2e)
+1053: background: color-mix(in srgb, var(--chart-tier-high) 45%, #22c55e);
+1059: color-mix(in srgb, var(--chart-tier-mid) 30%, var(--pure-white)),
+1060: color-mix(in srgb, var(--chart-tier-mid) 48%, #6b4a12)
+1065: background: color-mix(in srgb, var(--chart-tier-mid) 42%, #d97706);
+1071: color-mix(in srgb, var(--chart-tier-low) 32%, var(--pure-white)),
+1072: color-mix(in srgb, var(--chart-tier-low) 52%, #6b2d32)
+1077: background: color-mix(in srgb, var(--chart-tier-low) 40%, #ef4444);
+1091: color: color-mix(in srgb, var(--chart-tier-high) 28%, #145a3d);
+1095: color: color-mix(in srgb, var(--chart-tier-mid) 32%, #7a5210);
+1099: color: color-mix(in srgb, var(--chart-tier-low) 30%, #8f2a32);
+1103: color: color-mix(in srgb, var(--chart-tier-high) 48%, #4ade80);
+1107: color: color-mix(in srgb, var(--chart-tier-mid) 45%, #fbbf24);
+1111: color: color-mix(in srgb, var(--chart-tier-low) 42%, #fb7185);
+1588: .chart-host {
+1593: .chart-host svg {
+1600: .chart-host svg .bar-fill.bar-fill--smooth {
+1606: .chart-host svg .chart-y-label,
+1607: .chart-host svg .bar-value,
+1608: .chart-host svg .bar-label {
+1613: .chart-host svg .chart-tier-bands rect,
+1614: .chart-host svg .chart-tier-hlines line,
+1615: .chart-host svg .chart-tier-hlines text,
+1616: .chart-host svg .chart-custom-hlines line,
+1617: .chart-host svg .chart-custom-hlines text {
+1662: .chart-host svg .bar-fill.bar-fill--smooth {
+1994: .hub-card--ref-snaps .ref-snaps-actions {
+2005: .hub-card--ref-snaps .ref-snaps-actions .formula-note {
+2030: .ref-modal {
+2043: .ref-modal[hidden] {
+2047: .ref-modal__backdrop {
+2057: .ref-modal__panel {
+2075: .ref-modal.ref-modal--open .ref-modal__backdrop {
+2079: .ref-modal.ref-modal--open .ref-modal__panel {
+2085: .ref-modal__backdrop,
+2086: .ref-modal__panel {
+2091: .ref-modal__head {
+2099: .ref-modal__head h2 {
+2108: .ref-modal__close {
+2124: .ref-modal__close:hover:not(:disabled) {
+2130: .ref-modal__close:active:not(:disabled) {
+2135: [data-theme="dark"] .ref-modal__close:hover:not(:disabled) {
+2140: .ref-modal__foot button.primary {
+2148: .ref-modal__foot button.primary:hover:not(:disabled) {
+2154: .ref-modal__foot button.primary:active:not(:disabled) {
+2183: .ref-modal__close,
+2184: .ref-modal__close:hover,
+2185: .ref-modal__close:active,
+2186: .ref-modal__foot button.primary,
+2187: .ref-modal__foot button.primary:hover,
+2188: .ref-modal__foot button.primary:active,
+2197: .ref-modal__current {
+2203: .ref-modal__current strong {
+2207: .ref-modal__scroll {
+2250: .ref-modal__add {
+2256: .ref-modal__add .formula-note {
+2276: .ref-modal__panel {
+2290: .ref-modal__foot {
+2295: .page-info-modal .ref-modal__scroll.page-info-modal__scroll {

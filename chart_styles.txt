@@ -1,0 +1,100 @@
+24: --chart-tier-high: #b5ead7;
+25: --chart-tier-mid: #ffdac1;
+26: --chart-tier-low: #ffb7b2;
+27: --chart-bar-fill: #000000;
+28: --chart-ref-fill: #6b7280;
+29: --chart-value-text: #1c2024;
+30: --chart-axis-text: #60646c;
+31: --chart-surface: #ffffff;
+69: --chart-tier-high: #b5ead7;
+70: --chart-tier-mid: #ffdac1;
+71: --chart-tier-low: #ffb7b2;
+72: --chart-bar-fill: #e8eaef;
+73: --chart-ref-fill: #8b939e;
+74: --chart-value-text: #f0f2f5;
+75: --chart-axis-text: #9ca3b0;
+76: --chart-surface: #1c2128;
+267: .workspace-right .workspace-viz {
+275: .workspace-right .workspace-viz .section-head {
+279: .workspace-right .workspace-viz .viz-grid {
+287: .workspace-right .section-viz.workspace-viz {
+548: .workspace-right .sens-cell .sens-chart-host {
+668: .sens-cell .sens-chart-host {
+680: .sens-cell .sens-chart-host {
+685: .sens-cell .sens-chart-host svg {
+739: .workspace-viz--below {
+769: .workspace-viz {
+774: .workspace-viz .viz-grid {
+929: /* 滑动条：与柱状图 / 单轮成绩奖级色（--chart-tier-*）同系；分档切换时有过渡 */
+933: color-mix(in srgb, var(--chart-tier-high) 58%, var(--pure-white)),
+934: color-mix(in srgb, var(--chart-tier-high) 72%, #2d6b52)
+939: background: color-mix(in srgb, var(--chart-tier-high) 32%, #1a5a42);
+946: color-mix(in srgb, var(--chart-tier-mid) 55%, var(--pure-white)),
+947: color-mix(in srgb, var(--chart-tier-mid) 68%, #a86b28)
+952: background: color-mix(in srgb, var(--chart-tier-mid) 38%, #8a5a18);
+959: color-mix(in srgb, var(--chart-tier-low) 55%, var(--pure-white)),
+960: color-mix(in srgb, var(--chart-tier-low) 70%, #a84d52)
+965: background: color-mix(in srgb, var(--chart-tier-low) 36%, #8f353c);
+972: color-mix(in srgb, var(--chart-tier-high) 58%, var(--pure-white)),
+973: color-mix(in srgb, var(--chart-tier-high) 72%, #2d6b52)
+978: background: color-mix(in srgb, var(--chart-tier-high) 32%, #1a5a42);
+985: color-mix(in srgb, var(--chart-tier-mid) 55%, var(--pure-white)),
+986: color-mix(in srgb, var(--chart-tier-mid) 68%, #a86b28)
+991: background: color-mix(in srgb, var(--chart-tier-mid) 38%, #8a5a18);
+998: color-mix(in srgb, var(--chart-tier-low) 55%, var(--pure-white)),
+999: color-mix(in srgb, var(--chart-tier-low) 70%, #a84d52)
+1004: background: color-mix(in srgb, var(--chart-tier-low) 36%, #8f353c);
+1011: color-mix(in srgb, var(--chart-tier-high) 32%, var(--pure-white)),
+1012: color-mix(in srgb, var(--chart-tier-high) 55%, #0d3d2e)
+1017: background: color-mix(in srgb, var(--chart-tier-high) 45%, #22c55e);
+1023: color-mix(in srgb, var(--chart-tier-mid) 30%, var(--pure-white)),
+1024: color-mix(in srgb, var(--chart-tier-mid) 48%, #6b4a12)
+1029: background: color-mix(in srgb, var(--chart-tier-mid) 42%, #d97706);
+1035: color-mix(in srgb, var(--chart-tier-low) 32%, var(--pure-white)),
+1036: color-mix(in srgb, var(--chart-tier-low) 52%, #6b2d32)
+1041: background: color-mix(in srgb, var(--chart-tier-low) 40%, #ef4444);
+1047: color-mix(in srgb, var(--chart-tier-high) 32%, var(--pure-white)),
+1048: color-mix(in srgb, var(--chart-tier-high) 55%, #0d3d2e)
+1053: background: color-mix(in srgb, var(--chart-tier-high) 45%, #22c55e);
+1059: color-mix(in srgb, var(--chart-tier-mid) 30%, var(--pure-white)),
+1060: color-mix(in srgb, var(--chart-tier-mid) 48%, #6b4a12)
+1065: background: color-mix(in srgb, var(--chart-tier-mid) 42%, #d97706);
+1071: color-mix(in srgb, var(--chart-tier-low) 32%, var(--pure-white)),
+1072: color-mix(in srgb, var(--chart-tier-low) 52%, #6b2d32)
+1077: background: color-mix(in srgb, var(--chart-tier-low) 40%, #ef4444);
+1091: color: color-mix(in srgb, var(--chart-tier-high) 28%, #145a3d);
+1095: color: color-mix(in srgb, var(--chart-tier-mid) 32%, #7a5210);
+1099: color: color-mix(in srgb, var(--chart-tier-low) 30%, #8f2a32);
+1103: color: color-mix(in srgb, var(--chart-tier-high) 48%, #4ade80);
+1107: color: color-mix(in srgb, var(--chart-tier-mid) 45%, #fbbf24);
+1111: color: color-mix(in srgb, var(--chart-tier-low) 42%, #fb7185);
+1521: .workspace-viz .section-head h2 {
+1532: .workspace-viz .section-head .lead {
+1541: .workspace-viz .section-head h2 {
+1545: .workspace-viz .section-head .lead {
+1556: .workspace-viz .viz-grid {
+1574: .workspace-viz .card-viz-inner {
+1578: .workspace-viz .card-viz-inner h3 {
+1613: .chart-host svg .chart-tier-bands rect,
+1614: .chart-host svg .chart-tier-hlines line,
+1615: .chart-host svg .chart-tier-hlines text,
+1754: .workspace-main .section-viz.workspace-viz {
+1762: .workspace-viz .section-head .lead {
+1766: .workspace-viz .card-viz-inner {
+1879: .workspace-viz .section-head h2 {
+1971: .hub-lower .workspace-viz--below.hub-viz {
+2217: .ref-table {
+2222: .ref-table th,
+2223: .ref-table td {
+2228: .ref-table td:nth-child(2) {
+2235: .ref-table .ref-num {
+2240: .ref-table .ref-delta-pos {
+2245: .ref-table .ref-delta-neg {
+2250: .ref-modal__add {
+2256: .ref-modal__add .formula-note {
+2261: .ref-add-school {
+2265: .ref-add-grid {
+2272: .ref-add-grid {
+2280: .ref-table {
+2284: .ref-table th,
+2285: .ref-table td {
