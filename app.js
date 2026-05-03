@@ -251,7 +251,7 @@
       "sensChartWp",
       document.getElementById("sensCurWp"),
       0,
-      2000,
+      5000,
       50,
       function (xv) {
         return computeTurn(xv, we0, b0, t0).S;
@@ -303,7 +303,7 @@
 
     lo = Infinity;
     hi = -Infinity;
-    for (let wp = 0; wp <= 2000; wp++) {
+    for (let wp = 0; wp <= 5000; wp++) {
       s = computeTurn(wp, we0, b0, t0).S;
       if (s < lo) lo = s;
       if (s > hi) hi = s;
@@ -388,7 +388,7 @@
     const dD = d.d;
 
     const rows = [
-      { key: "wp", label: "W_payload", sub: "0–2000 g", delta: dWp },
+      { key: "wp", label: "W_payload", sub: "0–5000 g", delta: dWp },
       { key: "we", label: "W_empty", sub: "0–2000 g", delta: dWe },
       { key: "b", label: "b 翼展", sub: "0–4000 mm", delta: dB },
       { key: "d", label: "d 起飞距离", sub: "0–2.4 m", delta: dD },
@@ -418,7 +418,7 @@
     function marginalHint() {
       function dSdWp() {
         if (wp0 <= 0) return computeTurn(1, we0, b0, t0).S - computeTurn(0, we0, b0, t0).S;
-        if (wp0 >= 2000) return computeTurn(2000, we0, b0, t0).S - computeTurn(1999, we0, b0, t0).S;
+        if (wp0 >= 5000) return computeTurn(5000, we0, b0, t0).S - computeTurn(4999, we0, b0, t0).S;
         return (computeTurn(wp0 + 1, we0, b0, t0).S - computeTurn(wp0 - 1, we0, b0, t0).S) / 2;
       }
       function dSdWe() {
@@ -2049,7 +2049,7 @@
 
   const syncSlidersFromNumbers = (function () {
     const pairs = [
-      { numId: "wp", rangeId: "wpSl", min: 0, max: 2000, decimals: null },
+      { numId: "wp", rangeId: "wpSl", min: 0, max: 5000, decimals: null },
       { numId: "we", rangeId: "weSl", min: 0, max: 2000, decimals: null },
       { numId: "b", rangeId: "bSl", min: 0, max: 4000, decimals: null },
     ];
